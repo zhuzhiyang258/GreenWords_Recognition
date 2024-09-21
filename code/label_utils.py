@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate
 from prompt import label_prompt
-from llm_utils import DouBaoClient
+from llm_utils import DouBaoClient , OpenAIClient
 from env_fri_words import env_fri_words
 
 debug = False
@@ -15,7 +15,7 @@ class LabelUtils:
     用于对文本进行标签化的工具类
     """
     def __init__(self):
-        self.client = DouBaoClient()
+        self.client = OpenAIClient()
         self.env_fri_words = env_fri_words
 
     def label_multiple(self, raw_texts):
@@ -44,3 +44,8 @@ class LabelUtils:
 
         return labeled_texts
 
+if __name__ == "__main__":
+    label_utils = LabelUtils()
+    raw_texts = ["一个公司的环保策略非常重要"]
+    labeled_texts = label_utils.label_multiple(raw_texts)
+    print(labeled_texts)
